@@ -27,7 +27,7 @@ public class CountryService {
     private void fetchFromApi() {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String url = "https://restcountries.com/v3.1/all";
+            String url = "https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags";
             List<Map<String, Object>> response = restTemplate.getForObject(url, List.class);
 
             if (response != null) {
