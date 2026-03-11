@@ -16,13 +16,13 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping
-    public List<CountryDTO> getCountries(@RequestParam(required = false) String search) {
-        List<CountryDTO> countries = countryService.getAllCountries();
-        if (search != null && !search.isEmpty()) {
-            return countries.stream()
-                    .filter(c -> c.getName().toLowerCase().contains(search.toLowerCase()))
-                    .collect(Collectors.toList());
+    public List<CountryDTO> getCountries(@RequestParam(defaultValue = "") String search) {
+        List<CountryDTO> all = countryService.getAllCountries();
+        if (search == null || search.isEmpty()) {
+            return all;
         }
-        return countries;
+        return all.stream()
+                .filter(c -> c.getName() != null && c.getName().toLowerCase().contains(search.toLowerCase()))
+                .collect(Collectors.toList());
     }
 }
