@@ -14,7 +14,7 @@ function App() {
   const fetchCountries = async () => {
     try {
   
-      const response = await axios.get(`http://localhost:8080/api/countries?search=${searchTerm}`);
+    const response = await axios.get(`http://localhost:8081/api/countries?search=${searchTerm}`);
       setCountries(response.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
